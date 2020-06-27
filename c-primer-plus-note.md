@@ -1,4 +1,4 @@
-# 51. Introducing C
+# 1. Introducing C
 
 ## 1. 函数的形式
 
@@ -312,13 +312,13 @@ scanf("%f", &salary);
    int zippo[4][2] = { {2,4}, {6,8}, {1,3}, {5, 7} };
    ```
 
-   | 表达式           | 含义                                                         |
-   | ---------------- | ------------------------------------------------------------ |
-   | zippo            | the address of the first two-int element                     |
-   | zippo+2          | the address of the third two-int element                     |
-   | *(zippo+2)       | the third element, a two-int array, hence the address of its first element, an int |
-   | *(zippo+2) + 1   | the address of the second element of the two-int array, also an int |
-   | *((zippo+2) + 1) | the value of the second int in the third row (zippo[2]\[1\]) |
+   | 表达式              | 含义                                                         |
+   | ------------------- | ------------------------------------------------------------ |
+   | zippo               | the address of the first two-int element                     |
+   | zippo+2             | the address of the third two-int element                     |
+   | *(zippo+2)          | the third element, a two-int array, hence the address of its first element |
+   | *(zippo+2) + 1      | the address of the second element of the two-int array       |
+   | \*(\*(zippo+2) + 1) | the value of the second int in the third row (zippo[2]\[1\]) |
 
 2. Pointers to Multidimensional Arrays
 
@@ -383,7 +383,7 @@ scanf("%f", &salary);
 1. 创建
 
    ```c
-   (int []){50, 20, 90} // a compound literal with 3 elements
+   (int []){50, 20, 90} // a compound literal with 3 elements, c++不支持这种方式
    
    int * pt1;
    pt1 = (int [2]) {10, 20};
@@ -532,7 +532,7 @@ scanf("%f", &salary);
 
 # 11. Structure and Other Data Forms
 
-## 7.1 struct
+## 11.1 struct
 
 1. 定义
 
@@ -623,7 +623,7 @@ scanf("%f", &salary);
    char *left = s1.left;
    ```
 
-## 7.2 Union
+## 11.2 Union
 
 1. 定义
 
@@ -662,7 +662,7 @@ scanf("%f", &salary);
    };
    ```
 
-## 7.3 Enumerated Types
+## 11.3 Enumerated Types
 
 1. enum constants are type int; therefore, they can be used wherever you would use an int
 
@@ -683,7 +683,7 @@ scanf("%f", &salary);
    color = yello;
    ```
 
-## 7.4 typedef
+## 11.4 typedef
 
 1. typedef的特点
    - Unlike #define, typedef is limited to giving symbolic names to types only and not to values
@@ -706,7 +706,7 @@ scanf("%f", &salary);
    
    ```
 
-## 7.5 Fancy Declarations
+## 11.5 Fancy Declarations
 
 案例
 
@@ -734,7 +734,7 @@ p_arr5 p2; // p2 a pointer to an array of 5 int
 arrp10 ap; // ap an array of 10 pointers to array-of-5-int
 ```
 
-## 7.6 Functions and Pointers
+## 11.6 Functions and Pointers
 
 1. 声明
 
@@ -757,9 +757,9 @@ arrp10 ap; // ap an array of 10 pointers to array-of-5-int
 
 
 
-# 8. Bit Fiddling
+# 12. Bit Fiddling
 
-## 8.1 Bitwise Operators
+## 12.1 Bitwise Operators
 
 1. Usage: Masks
 
@@ -791,7 +791,7 @@ arrp10 ap; // ap an array of 10 pointers to array-of-5-int
    (flags & MASK) == MASK
    ```
 
-## 8.2 Bit Fields
+## 12.2 Bit Fields
 
 1. 定义
 
@@ -830,7 +830,7 @@ arrp10 ap; // ap an array of 10 pointers to array-of-5-int
 
 4. they are used for nonportable purposes, such as putting data in the exact form used by a particular hardware device.
 
-## 8.3 Alignment Features (C11)
+## 12.3 Alignment Features (C11)
 
 1. ```_Alignof```关键字，获取对齐的大小
 
@@ -848,7 +848,7 @@ arrp10 ap; // ap an array of 10 pointers to array-of-5-int
 
 
 
-# 9. The C Preprocessor and the C Library
+# 13. The C Preprocessor and the C Library
 
 获取预处理后的文本指令
 
@@ -858,7 +858,7 @@ gcc -E program.c
 
 
 
-## 9.1 First Steps in Translating a Program
+## 13.1 First Steps in Translating a Program
 
 1. 将换行的文本调整为一行
 
@@ -872,7 +872,7 @@ gcc -E program.c
 
 2. 删除调注释
 
-## 9.2 Manifest Constants: #define
+## 13.2 Manifest Constants: #define
 
 1. 一般形式， 字符串替换
 
@@ -929,13 +929,13 @@ gcc -E program.c
    printf("Message" "1" ": " "x = %d\n", x);
    ```
 
-## 9.3 Macro or Function?
+## 13.3 Macro or Function?
 
 1. macro是字符串替换，因此占用空间
 2. macro采用inline的方式，运行期间不需要额外调用函数，速度更快
 3. macro是字符串替换，不需要考虑宏的参数类型问题
 
-## 9.4 File Inclusion: #include
+## 13.4 File Inclusion: #include
 
 1. 使用
 
@@ -945,7 +945,7 @@ gcc -E program.c
    #include "/usr/biff/p.h" // Searches the /usr/biff directory
    ```
 
-## 9.5 Other Directives
+## 13.5 Other Directives
 
 1. The #undef Directive
 
@@ -972,8 +972,8 @@ gcc -E program.c
    ```c
    // define.h头文件
    #ifndef DEFINE_H_
-   
    #define DEFINE_H_
+   
    #define SIZE 100
    
    #endif
@@ -1059,7 +1059,7 @@ gcc -E program.c
    char * type = _Generic((9), int: "int", double: "double", default: "other" );
    ```
 
-## 9.6 Inline Functions (C99)
+## 13.6 Inline Functions (C99)
 
 1. inline functon等价于将函数代码直接放入调用方函数中，避免函数调用的额外开销
 
@@ -1107,7 +1107,7 @@ gcc -E program.c
 
    > GCC does not inline any functions when not optimizing unless you specify the ‘always_inline’ attribute for the function  
 
-## 9.7 The Math Library
+## 13.7 The Math Library
 
 math.h
 
@@ -1122,7 +1122,7 @@ sqrt;
 ...
 ```
 
-## 9.8 The General Utilities Library
+## 13.8 The General Utilities Library
 
 在```stdlib.h```这个头文件中
 
@@ -1140,7 +1140,7 @@ sqrt;
         	int (*compar)(const void *, const void *));
    ```
 
-## 9.9 The Assert Library
+## 13.9 The Assert Library
 
 需要引入头文件：```assert.h ```
 
@@ -1194,7 +1194,7 @@ sqrt;
    void *memmove(void *dest, const void *src, size_t n);
    ```
 
-## 9.10 Variable Arguments: stdarg.h
+## 13.10 Variable Arguments: stdarg.h
 
 1. 变参必须位于最后一个参数
 
@@ -1234,4 +1234,4 @@ sqrt;
 
 
 
-# 10. Advanced Data Representation
+# 14. Advanced Data Representation
